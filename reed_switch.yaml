@@ -1,0 +1,17 @@
+mqtt:
+  binary_sensor:
+    - name: "Garage Door State"
+      state_topic: "toggle/garage_door/state"
+      device_class: opening
+
+alert:
+  garage_door:
+    name: Garage is open
+    done_message: Garage is closed
+    entity_id: binary_sensor.garage_door_state
+    state: "on"
+    repeat: 20
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_pixel_7_pro
